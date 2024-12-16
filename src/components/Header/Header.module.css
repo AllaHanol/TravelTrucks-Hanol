@@ -1,0 +1,22 @@
+.header{
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+border-bottom: 1px solid var(--badges);
+padding: 24px 64px;
+height: 72px;
+background-color: var(--inputs);
+}
+.logo{
+    position: absolute;
+    left: 64px;
+}
+.nav{
+    display: flex;
+    gap: 32px;
+    margin-left: auto;
+}
+.active{
+    color: var(--button-hover);
+}

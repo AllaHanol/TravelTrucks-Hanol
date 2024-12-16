@@ -1,14 +1,26 @@
+import { Route, Routes } from "react-router-dom"
+import {lazy, Suspense} from 'react';
+import css from './App.module.css';
+import Layout from "../Layout/Layout";
 
-
-import './App.css'
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 
 function App() {
- 
 
   return (
-    <>
-      <h1>Hallo</h1>
-    </>
+    <div className={css.container}>
+      <Layout>
+          <Suspense fallback ={null}>
+            <Routes>
+              <Route path="/" element={<HomePage/>}/>
+              <Route path="/catalog" element={<h1>Catalog</h1>}/>
+            </Routes>
+          </Suspense>
+
+      </Layout>
+
+      
+    </div>
   )
 }
 
