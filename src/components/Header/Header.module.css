@@ -4,7 +4,7 @@ align-items: center;
 justify-content: center;
 position: relative;
 border-bottom: 1px solid var(--badges);
-padding: 24px 64px;
+padding: 28px 64px;
 height: 72px;
 background-color: var(--inputs);
 }
@@ -15,7 +15,7 @@ background-color: var(--inputs);
 .nav{
     display: flex;
     gap: 32px;
-    margin-left: auto;
+    
 }
 .active{
     color: var(--button-hover);
