@@ -2,7 +2,7 @@ import Button from "../Button/Button.jsx";
 import Icon from "../Icon/Icon.jsx";
 import TruckOptionsList from "../TruckOptionsList/TruckOptionsList.jsx";
 
-import styles from "./TruckBasicInfo.module.css";
+import css from "./TruckBasicInfo.module.css";
 
 export default function TruckBasicInfo({
   data,
@@ -14,33 +14,25 @@ export default function TruckBasicInfo({
   );
 
   return (
-    <div className={styles.item}>
+    <div className={css.item}>
       <img
-        className={styles.img}
+        className={css.img}
         src={data.gallery[0].original}
         alt="Camper image"
       />
-      <section
-        className={styles.content}
-      >
+      <section className={css.content}>
         <section>
           <div
-            className={
-              styles.name_price
-            }
+            className={css.name_price}
           >
             <h2>{data.name}</h2>
-            <div
-              className={styles.price}
-            >
+            <div className={css.price}>
               <h2>
                 &euro;
                 {data.price.toFixed(2)}
               </h2>
               <button
-                className={
-                  styles.favorite
-                }
+                className={css.favorite}
                 onClick={() =>
                   onClick(data.id)
                 }
@@ -59,7 +51,7 @@ export default function TruckBasicInfo({
           </div>
           <ul
             className={
-              styles.rating_location
+              css.rating_location
             }
           >
             <li>
@@ -85,9 +77,7 @@ export default function TruckBasicInfo({
             </li>
           </ul>
         </section>
-        <p
-          className={styles.description}
-        >
+        <p className={css.description}>
           {data.description}
         </p>
         <TruckOptionsList data={data} />

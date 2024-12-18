@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
-  getCamperInfo,
-  getCampers,
+  getAllCampers,
+  getCamperById,
 } from "./trucksOperations.js";
 
-const initialState = {
+const INITIAL_STATE = {
   total: 0,
   isRefreshing: false,
   error: null,
@@ -36,7 +36,7 @@ const initialState = {
 
 const trucksSlice = createSlice({
   name: "trucks",
-  initialState,
+  initialState: INITIAL_STATE,
   reducers: {
     setPage(state, action) {
       state.pagination.page =
@@ -63,35 +63,40 @@ const trucksSlice = createSlice({
         action.payload;
     },
     resetItems(state) {
-      state.items = initialState.items;
+      state.items = INITIAL_STATE.items;
       state.pagination =
-        initialState.pagination;
+        INITIAL_STATE.pagination;
     },
   },
   extraReducers: (builder) => {
     builder
       // get all trucks
       .addCase(
-        getCampers.pending,
+        getAllCampers.pending,
         (state) => {
           state.error = null;
           state.isRefreshing = true;
         },
       )
       .addCase(
-        getCampers.fulfilled,
+        getAllCampers.fulfilled,
         (state, { payload }) => {
+          const { page } =
+            state.pagination;
           state.isRefreshing = false;
-          state.total = payload.total;
-          // state.items = payload.items;
-          state.items = [
-            ...state.items,
-            ...payload.items,
-          ];
+          state.it = payload.total;
+          if (page === 1) {
+            state.items = payload.items;
+          } else {
+            state.items = [
+              ...state.items,
+              ...payload.items,
+            ];
+          }
         },
       )
       .addCase(
-        getCampers.rejected,
+        getAllCampers.rejected,
         (state, { payload }) => {
           state.isRefreshing = false;
           state.error = payload;
@@ -100,21 +105,21 @@ const trucksSlice = createSlice({
 
       // get truck detail info
       .addCase(
-        getCamperInfo.pending,
+        getCamperById.pending,
         (state) => {
           state.error = null;
           state.isRefreshing = true;
         },
       )
       .addCase(
-        getCamperInfo.fulfilled,
+        getCamperById.fulfilled,
         (state, { payload }) => {
           state.isRefreshing = false;
           state.truckInfo = payload;
         },
       )
       .addCase(
-        getCamperInfo.rejected,
+        getCamperById.rejected,
         (state, { payload }) => {
           state.isRefreshing = false;
           state.error = payload;
