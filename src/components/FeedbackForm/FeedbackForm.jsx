@@ -12,8 +12,8 @@ const FeedbackSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(25, 'Too Long!')
     .required('Required'),
-  email: Yup.string().email('Must be a valid email!').required('Required'),
-  date: Yup.string().required('Required'),
+  email: Yup.string().email('Must be a valid email!').required('Email is required!'),
+  date: Yup.date().required('Required'),
   message: Yup.string().min(3, 'Too short').max(256, 'Too long'),
 });
 

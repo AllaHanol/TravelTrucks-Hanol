@@ -31,6 +31,7 @@ const initialState = {
   queryFilters: "",
   items: [],
   truckInfo: {},
+  location: "",
 };
 
 const trucksSlice = createSlice({
