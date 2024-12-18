@@ -3,7 +3,7 @@ import css from './Header.module.css';
 import clsx from 'clsx';
 import { Link, NavLink } from 'react-router-dom';
 
-const changeLinkClass = ({ isActive }) => {
+const buildLinkClass = ({ isActive }) => {
     return clsx(isActive&&css.active);
 }
 export default function Header() {
@@ -11,12 +11,12 @@ export default function Header() {
         <header className={css.header}>
             <div className={css.logo}>
                 <Link to="/">
-                    <Logo/>
+                   <Logo/>
                 </Link>
             </div>
             <nav className={css.nav}>
-                <NavLink to="/" className={changeLinkClass}>Home</NavLink>
-                <NavLink to="/catalog" className={changeLinkClass}>Catalog</NavLink>
+                <NavLink to="/" className={buildLinkClass}>Home</NavLink>
+                <NavLink to="/catalog" className={buildLinkClass}>Catalog</NavLink>
             </nav>
 
             

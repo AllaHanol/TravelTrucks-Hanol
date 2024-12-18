@@ -1,15 +1,15 @@
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
-import Button from '../../components/Button/Button.jsx';
-import Location from '../../components/Location/Location.jsx';
-import VehicleEquipment from '../../components/VehicleEquipment/VehicleEquipment.jsx';
-import VehicleType from '../../components/VehicleType/VehicleType.jsx';
-import TrucksList from '../../components/TrucksList/TrucksList.jsx';
+import Button from "../../components/Button/Button.jsx";
+import Location from "../../components/Location/Location.jsx";
+import VehicleEquipment from "../../components/VehicleEquipment/VehicleEquipment.jsx";
+import VehicleType from "../../components/VehicleType/VehicleType.jsx";
+import TrucksList from "../../components/TrucksList/TrucksList.jsx";
 
-import { resetItems } from '../../redux/trucks/action.js';
+import { resetItems } from "../../redux/trucks/action.js";
 
-import css from './CatalogPage.module.css';
+import css from "./CatalogPage.module.css";
 
 function CatalogPage() {
   const dispatch = useDispatch();
@@ -23,7 +23,9 @@ function CatalogPage() {
         <Location />
         <VehicleEquipment />
         <VehicleType />
-        <Button variant="search">Search</Button>
+        <Button variant="search">
+          Search
+        </Button>
       </section>
       <section className={css.trucks}>
         <TrucksList />
