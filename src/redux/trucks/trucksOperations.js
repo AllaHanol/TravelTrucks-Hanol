@@ -10,11 +10,17 @@ export const getAllCampers =
   createAsyncThunk(
     "campers/getAll",
     async (params, thunkAPI) => {
+      // const state = thunkAPI.getState();
+      // const { page, limit } =
+      //   state.trucks.pagination;
+      // const filters =
+      //   state.trucks.queryFilters;
       try {
         const { data } =
           await instance.get(
             "/campers",
-            { params },
+            { params }
+            // `/campers?page={${page}&limit=${limit}&filters=${filters}`,
           );
         return data;
       } catch (error) {
