@@ -104,15 +104,15 @@ export default function TrucksList() {
           </li>
         ))}
       </ul>
-      {totalPages > 1 && (
-        <Button
-          variant="loadMore"
-          loadMore={handleClickLoad}
-          disabled={page === totalPages}
-        >
-          Load more
-        </Button>
-      )}
+      {/* {totalPages > 1 && ( */}
+      <Button
+        variant="loadMore"
+        loadMore={handleClickLoad}
+        disabled={page === totalPages}
+      >
+        Load more
+      </Button>
+      {/* )} */}
     </div>
   );
 }

@@ -12,6 +12,18 @@ export default function TruckOptionsList({
 
   return (
     <ul className={css.optionsList}>
+      <li>
+        <TruckOptions
+          option={data.transmission}
+          id="transmission"
+        />
+      </li>
+      <li>
+        <TruckOptions
+          option={data.engine}
+          id="engine"
+        />
+      </li>
       {options.map((option) => (
         <li key={option}>
           <TruckOptions
