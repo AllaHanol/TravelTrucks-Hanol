@@ -38,6 +38,7 @@
   border: none;
   background: var(--inputs);
   border-radius: 12px;
+  color: var(--gray);
 }
 
 .form div span {

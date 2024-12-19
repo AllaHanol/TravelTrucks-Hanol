@@ -1,56 +1,93 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useId } from 'react';
-import * as Yup from 'yup';
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+} from "formik";
+import {
+  ToastContainer,
+  toast,
+} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useId, useState } from "react";
+import * as Yup from "yup";
 
-import css from './FeedbackForm.module.css';
-import Button from '../Button/Button.jsx';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const FeedbackSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too Short!')
-    .max(25, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Must be a valid email!').required('Email is required!'),
-  date: Yup.date().required('Required'),
-  message: Yup.string().min(3, 'Too short').max(256, 'Too long'),
-});
+import css from "./FeedbackForm.module.css";
+import Button from "../Button/Button.jsx";
+
+const FeedbackSchema =
+  Yup.object().shape({
+    name: Yup.string()
+      .min(2, "Too Short!")
+      .max(25, "Too Long!")
+      .required("Required"),
+    email: Yup.string()
+      .email("Must be a valid email!")
+      .required("Email is required!"),
+    date: Yup.date().required(
+      "Required",
+    ),
+    message: Yup.string()
+      .min(3, "Too short")
+      .max(256, "Too long"),
+  });
 
 const initialValues = {
-  name: '',
-  email: '',
-  message: '',
-  date: '',
+  name: "",
+  email: "",
+  message: "",
+  date: "",
 };
 
 export default function FeedbackForm() {
   const nameFieldId = useId();
   const emailFieldId = useId();
-  const dateFieldId = useId();
+  // const dateFieldId = useId();
   const msgFieldId = useId();
 
-  const handleSubmit = (values, actions) => {
-    console.log('object');
-    toast.success('Your reservation has been successfully sent!');
+  const handleSubmit = (
+    values,
+    actions,
+  ) => {
+    console.log("object");
+    toast.success(
+      "Your reservation has been successfully sent!",
+    );
     actions.resetForm();
+  };
+  const [startDate, setStartDate] =
+    useState(null);
+  const handleDateChange = (date) => {
+    setStartDate(date);
   };
 
   return (
-    <section className={css.form_section}>
+    <section
+      className={css.form_section}
+    >
       <ToastContainer />
       <div className={css.title}>
         <h3>Book your campervan now</h3>
-        <p>Stay connected! We are always ready to help you.</p>
+        <p>
+          Stay connected! We are always
+          ready to help you.
+        </p>
       </div>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={FeedbackSchema}
+        validationSchema={
+          FeedbackSchema
+        }
       >
         <Form className={css.form}>
           <div>
-            <label htmlFor={nameFieldId}></label>
+            <label
+              htmlFor={nameFieldId}
+            ></label>
             <Field
               type="text"
               name="name"
@@ -58,11 +95,16 @@ export default function FeedbackForm() {
               placeholder="Name*"
               className={css.input}
             />
-            <ErrorMessage name="name" component="span" />
+            <ErrorMessage
+              name="name"
+              component="span"
+            />
           </div>
 
           <div>
-            <label htmlFor={emailFieldId}></label>
+            <label
+              htmlFor={emailFieldId}
+            ></label>
             <Field
               type="email"
               name="email"
@@ -70,23 +112,51 @@ export default function FeedbackForm() {
               placeholder="Email*"
               className={css.input}
             />
-            <ErrorMessage name="email" component="span" />
+            <ErrorMessage
+              name="email"
+              component="span"
+            />
           </div>
 
           <div>
-            <label htmlFor={dateFieldId}></label>
-            <Field
-              type="text"
-              name="date"
-              id={dateFieldId}
-              placeholder="Booking date*"
+            {/* <label htmlFor="date">Booking date*</label> */}
+            <DatePicker
+              selected={startDate}
+              onChange={
+                handleDateChange
+              }
+              placeholderText="Booking date*"
               className={css.input}
             />
-            <ErrorMessage name="date" component="span" />
+            {/* <label
+              htmlFor={dateFieldId}
+            ></label>
+            <Field
+              type="date"
+              name="date"
+              id={dateFieldId}
+              className={css.input}
+              onFocus={(e) =>
+                (e.target.placeholder =
+                  "")
+              }
+              onBlur={(e) =>
+                (e.target.placeholder =
+                  "Booking date*")
+              }
+              placeholder="Booking date*"
+            />
+
+            <ErrorMessage
+              name="date"
+              component="span"
+            /> */}
           </div>
 
           <div>
-            <label htmlFor={msgFieldId}></label>
+            <label
+              htmlFor={msgFieldId}
+            ></label>
             <Field
               as="textarea"
               name="message"
@@ -95,10 +165,16 @@ export default function FeedbackForm() {
               placeholder="Comment"
               className={`${css.textarea} ${css.input}`}
             />
-            <ErrorMessage name="message" component="span" />
+            <ErrorMessage
+              name="message"
+              component="span"
+            />
           </div>
 
-          <Button type="submit" variant="submit">
+          <Button
+            type="submit"
+            variant="submit"
+          >
             Submit
           </Button>
         </Form>
