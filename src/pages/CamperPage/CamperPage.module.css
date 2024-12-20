@@ -8,7 +8,8 @@
   display: flex;
   gap: 40px;
   height: 48px;
-  border-bottom: solid 1px var(--gray-light);
+  border-bottom: solid 1px
+    var(--gray-light);
 }
 
 /* 3 */
@@ -25,11 +26,14 @@
 }
 
 .btn h3 {
+  font-size: 20px;
+  line-height: 120%;
+  font-weight: 600;
   height: 100%;
 }
 
 .isActive::after {
-  content: '';
+  content: "";
   display: block;
   border-bottom: solid 5px var(--button);
   transform: translateY(-2px);

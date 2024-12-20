@@ -15,6 +15,13 @@
   gap: 8px;
 }
 
+.title h3 {
+  font-size: 20px;
+  line-height: 120%;
+  font-weight: 600;
+  color: var(--main);
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -39,6 +46,10 @@
   background: var(--inputs);
   border-radius: 12px;
   color: var(--gray);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  font-family: "Inter", sans-serif;
 }
 
 .form div span {

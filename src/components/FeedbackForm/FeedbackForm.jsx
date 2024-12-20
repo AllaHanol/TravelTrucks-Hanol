@@ -9,11 +9,11 @@ import {
   toast,
 } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useId, useState } from "react";
+import { useId } from "react";
 import * as Yup from "yup";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 import css from "./FeedbackForm.module.css";
 import Button from "../Button/Button.jsx";
@@ -45,7 +45,7 @@ const initialValues = {
 export default function FeedbackForm() {
   const nameFieldId = useId();
   const emailFieldId = useId();
-  // const dateFieldId = useId();
+  const dateFieldId = useId();
   const msgFieldId = useId();
 
   const handleSubmit = (
@@ -58,11 +58,11 @@ export default function FeedbackForm() {
     );
     actions.resetForm();
   };
-  const [startDate, setStartDate] =
-    useState(null);
-  const handleDateChange = (date) => {
-    setStartDate(date);
-  };
+  // const [startDate, setStartDate] =
+  //   useState(null);
+  // const handleDateChange = (date) => {
+  //   setStartDate(date);
+  // };
 
   return (
     <section
@@ -119,20 +119,20 @@ export default function FeedbackForm() {
           </div>
 
           <div>
-            {/* <label htmlFor="date">Booking date*</label> */}
-            <DatePicker
+            {/* <DatePicker
               selected={startDate}
               onChange={
                 handleDateChange
               }
+              dateFormat="dd.MM.yyyy"
               placeholderText="Booking date*"
               className={css.input}
-            />
-            {/* <label
+            /> */}
+            <label
               htmlFor={dateFieldId}
             ></label>
             <Field
-              type="date"
+              type="text"
               name="date"
               id={dateFieldId}
               className={css.input}
@@ -150,7 +150,7 @@ export default function FeedbackForm() {
             <ErrorMessage
               name="date"
               component="span"
-            /> */}
+            />
           </div>
 
           <div>
