@@ -5,15 +5,15 @@ import {
   ErrorMessage,
 } from "formik";
 import {
-  ToastContainer,
+  // ToastContainer,
   toast,
 } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useId } from "react";
 import * as Yup from "yup";
 
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/flatpickr.css";
 
 import css from "./FeedbackForm.module.css";
 import Button from "../Button/Button.jsx";
@@ -30,6 +30,14 @@ const FeedbackSchema =
     date: Yup.date().required(
       "Required",
     ),
+    bookingDate: Yup.string()
+      .matches(
+        /^(\d{2})\.(\d{2})\.(\d{4})$/,
+        "Date must be in format dd.mm.yyyy",
+      )
+      .required(
+        "Select date in the future",
+      ),
     message: Yup.string()
       .min(3, "Too short")
       .max(256, "Too long"),
@@ -58,77 +66,121 @@ export default function FeedbackForm() {
     );
     actions.resetForm();
   };
-  // const [startDate, setStartDate] =
-  //   useState(null);
-  // const handleDateChange = (date) => {
-  //   setStartDate(date);
-  // };
 
   return (
-    <section
-      className={css.form_section}
+    // <section
+    //   className={css.form_section}
+    // >
+    //   <ToastContainer />
+    //   <div className={css.title}>
+    //     <h3>Book your campervan now</h3>
+    //     <p>
+    //       Stay connected! We are always
+    //       ready to help you.
+    //     </p>
+    //   </div>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={FeedbackSchema}
     >
-      <ToastContainer />
-      <div className={css.title}>
-        <h3>Book your campervan now</h3>
-        <p>
-          Stay connected! We are always
-          ready to help you.
-        </p>
-      </div>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={
-          FeedbackSchema
-        }
-      >
-        <Form className={css.form}>
-          <div>
-            <label
-              htmlFor={nameFieldId}
-            ></label>
-            <Field
-              type="text"
-              name="name"
-              id={nameFieldId}
-              placeholder="Name*"
-              className={css.input}
-            />
-            <ErrorMessage
-              name="name"
-              component="span"
-            />
-          </div>
+      {({ setFieldValue }) => (
+        <div
+          className={css.form_section}
+        >
+          <h3 className={css.title}>
+            Book your campervan now
+          </h3>
+          <p>
+            Stay connected! We are
+            always ready to help you.
+          </p>
+          <Form className={css.form}>
+            <div>
+              <label
+                htmlFor={nameFieldId}
+              ></label>
+              <Field
+                type="text"
+                name="name"
+                id={nameFieldId}
+                placeholder="Name*"
+                className={css.input}
+              />
+              <ErrorMessage
+                name="name"
+                component="span"
+              />
+            </div>
 
-          <div>
-            <label
-              htmlFor={emailFieldId}
-            ></label>
-            <Field
-              type="email"
-              name="email"
-              id={emailFieldId}
-              placeholder="Email*"
-              className={css.input}
-            />
-            <ErrorMessage
-              name="email"
-              component="span"
-            />
-          </div>
+            <div>
+              <label
+                htmlFor={emailFieldId}
+              ></label>
+              <Field
+                type="email"
+                name="email"
+                id={emailFieldId}
+                placeholder="Email*"
+                className={css.input}
+              />
+              <ErrorMessage
+                name="email"
+                component="span"
+              />
+            </div>
 
-          <div>
-            {/* <DatePicker
-              selected={startDate}
-              onChange={
-                handleDateChange
+            <div
+              className={
+                css.groupFieldAndError
               }
-              dateFormat="dd.MM.yyyy"
-              placeholderText="Booking date*"
-              className={css.input}
-            /> */}
-            <label
+            >
+              <Flatpickr
+                placeholder="Booking date*"
+                className={css.input}
+                id={dateFieldId}
+                options={{
+                  dateFormat: "d.m.Y",
+                  minDate: new Date(),
+                }}
+                onChange={(
+                  selectedDates,
+                ) => {
+                  if (
+                    selectedDates.length >
+                    0
+                  ) {
+                    const formattedDate =
+                      selectedDates[0]
+                        .toLocaleDateString(
+                          "en-GB",
+                        )
+                        .replace(
+                          /\//g,
+                          ".",
+                        );
+                    setFieldValue(
+                      "bookingDate",
+                      formattedDate,
+                    );
+                  }
+                }}
+                onInput={(e) => {
+                  setFieldValue(
+                    "bookingDate",
+                    e.target.value,
+                  );
+                }}
+              />
+              <ErrorMessage
+                name="bookingDate"
+                component="span"
+                className={css.error}
+              />
+            </div>
+
+            {/* <div> */}
+            {/* <label
               htmlFor={dateFieldId}
             ></label>
             <Field
@@ -150,35 +202,37 @@ export default function FeedbackForm() {
             <ErrorMessage
               name="date"
               component="span"
-            />
-          </div>
+            /> */}
+            {/* </div> */}
 
-          <div>
-            <label
-              htmlFor={msgFieldId}
-            ></label>
-            <Field
-              as="textarea"
-              name="message"
-              id={msgFieldId}
-              rows="5"
-              placeholder="Comment"
-              className={`${css.textarea} ${css.input}`}
-            />
-            <ErrorMessage
-              name="message"
-              component="span"
-            />
-          </div>
+            <div>
+              <label
+                htmlFor={msgFieldId}
+              ></label>
+              <Field
+                as="textarea"
+                name="message"
+                id={msgFieldId}
+                rows="5"
+                placeholder="Comment"
+                className={`${css.textarea} ${css.input}`}
+              />
+              <ErrorMessage
+                name="message"
+                component="span"
+              />
+            </div>
 
-          <Button
-            type="submit"
-            variant="submit"
-          >
-            Submit
-          </Button>
-        </Form>
-      </Formik>
-    </section>
+            <Button
+              type="submit"
+              variant="submit"
+            >
+              Submit
+            </Button>
+          </Form>
+        </div>
+      )}
+    </Formik>
+    // </section>
   );
 }

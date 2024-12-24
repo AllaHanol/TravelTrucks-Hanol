@@ -1,34 +1,40 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-h1, h2, h3, h4, h5, h6,p{
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
-p:last-child{
-    margin-bottom: 0;
+p:last-child {
+  margin-bottom: 0;
 }
-a{
-    text-decoration: none;
-    color: var(--main);
-    /* cursor: pointer; */
-    font-weight: 500;
+a {
+  text-decoration: none;
+  color: var(--main);
+
+  font-weight: 500;
 }
-ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-img{
-    max-width: 100%;
-    display: block;
-    height: auto;
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
 }
-button{
-    border: none;
-    outline: transparent;
-    cursor: pointer;
+button {
+  border: none;
+  outline: transparent;
+  cursor: pointer;
 }
 input {
   outline: transparent;

@@ -1,8 +1,19 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Booking campers application. Test task for GO-IT.
 
-Currently, two official plugins are available:
+to run developer server at localhost use:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+"npm install";
+"npm run dev";
+open live page on localhost with port that you see in console of your IDE;
+or
+
+to open Vercel live page follow the link (https://traveltrucks-rho.vercel.app/).
+
+You can use filters, all of them including "location" applying after activate filters with "Search" button. You can get more offers with "Load more" button. You can add camper to favorite list, it's also saves to local storage. I can create another page for favorites, if needed. You can on camper page open photo in modal. You can check the user-data that will be sended to backend in console of your browser ("camperId" add automaticaly).
+
+not found page added
+loader added
+adapted for 320px and 768px (filters are available on sidebar)
+author: AllaHanol (https://github.com/AllaHanol/)
